@@ -1,1 +1,1 @@
-require_relevant ""
+require_relevant "scraper"
