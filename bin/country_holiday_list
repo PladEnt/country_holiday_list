@@ -1,4 +1,2 @@
 #!/usr/bin/env ruby
-
-
-puts "country holiday list test"
+require_relative "./lib/country_holiday_list/cli"
