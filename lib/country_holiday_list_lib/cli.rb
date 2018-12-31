@@ -7,7 +7,7 @@ class CLI
     @user = user
   end
 
-  def welcome
+  def self.welcome
     puts "|Welcome to Country Holiday List|"
     puts "|-------------------------------|"
     puts "|Please enter the countrys code |"
@@ -19,18 +19,18 @@ class CLI
     puts "|type 'exit' to end the program |"
     puts " "
 
-  where_to?
+    self.where_to?
   end
 
-  def where_to?
+  def self.where_to?
 
     imput = gets.chomp.strip
 
     if imput == "list"
-
+      Countrys.country_list
     else
       puts " "
-      country_info(imput)
+      Countrys.country_info(imput)
     end
   end
 end
