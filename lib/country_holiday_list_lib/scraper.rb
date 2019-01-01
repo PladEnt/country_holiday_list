@@ -8,6 +8,15 @@ class Scraper
     doc = Nokogiri::HTML(open("https://www.calendarindex.com/"))
   end
 
+  def self.code
+    @doc.css(".well-countries .col-xs-12").each do |country|
+      country.css("code").text.strip
+      country.css("a").text.strip
+    end
+    return code
+    return a
+  end
+
   def self.holiday(code)
     year = Time.new.year
 

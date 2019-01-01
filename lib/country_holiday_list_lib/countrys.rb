@@ -1,10 +1,11 @@
  require_relative "./scraper"
 
 class Countrys
-  attr_accessor :holidays, :list_of_countries, :doc
+  attr_accessor :holidays, :doc, :code_of_all
 
   def initialize
-    doc = Scraper.doc
+    @doc = Scraper.doc
+    @code_of_all = Scraper.code
 
   end
 
@@ -12,7 +13,7 @@ class Countrys
     puts "|------------------|"
     puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
     puts "|------------------|"
-    doc.css(".well-countries .col-xs-12").each do |country|
+    @doc.css(".well-countries .col-xs-12").each do |country|
       puts "| #{country.css("code").text.strip}"
       puts "| #{country.css("a").text.strip}"
       puts "| "
@@ -30,7 +31,7 @@ class Countrys
 
   error = "yes"
 
-    doc.css(".well-countries .col-xs-12").each do |country|
+    @doc.css(".well-countries .col-xs-12").each do |country|
 
       if country.css("code").text.strip == code.upcase || country.css("a").text.strip == code
       #if you enter a countrys code like 'us' or a name like 'United States' this will run
