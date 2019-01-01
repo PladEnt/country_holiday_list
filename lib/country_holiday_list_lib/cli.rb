@@ -28,6 +28,8 @@ class CLI
 
     if imput == "list"
       Countrys.country_list
+    elsif imput == "exit"
+      puts "Exiting..."
     else
       puts " "
       Countrys.country_info(imput)
