@@ -10,12 +10,13 @@ class Countrys
   end
 
   def self.country_list
+    info = Scraper.code
     puts "|------------------|"
     puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
     puts "|------------------|"
-    @doc.css(".well-countries .col-xs-12").each do |country|
-      puts "| #{country.css("code").text.strip}"
-      puts "| #{country.css("a").text.strip}"
+    info.each do |code, name|
+      puts "| #{code}"
+      puts "| #{name}"
       puts "| "
       puts "|-------------"
     end
