@@ -4,6 +4,7 @@ class Countrys
   attr_accessor :holidays, :doc, :code_of_all
 
   def initialize
+    Scraper.new
     @doc = Scraper.doc
     @code_of_all = Scraper.code
 

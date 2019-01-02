@@ -4,7 +4,12 @@ require "pry"
 
 
 class Scraper
-  @@doc = Nokogiri::HTML(open("https://www.calendarindex.com/"))
+  attr_accessor
+
+  def initialize
+    @doc = Nokogiri::HTML(open("https://www.calendarindex.com/"))
+  end
+
   def self.doc
     @@doc
   end

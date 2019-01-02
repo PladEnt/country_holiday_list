@@ -4,6 +4,7 @@ class CLI
   attr_accessor :user
 
   def initialize(user)
+    Coutrys.new
     @user = user
   end
 
