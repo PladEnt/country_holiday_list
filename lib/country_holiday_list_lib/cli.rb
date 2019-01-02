@@ -4,7 +4,7 @@ class CLI
   attr_accessor :user
 
   def initialize(user)
-    Coutrys.new
+    Countrys.new
     @user = user
   end
 
