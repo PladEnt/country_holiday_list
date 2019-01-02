@@ -16,8 +16,8 @@ class Scraper
 
   def self.code
     @doc.css(".well-countries .col-xs-12").each do |country|
-      country.css("code").text.strip
-      country.css("a").text.strip
+      code = country.css("code").text.strip
+      a = country.css("a").text.strip
     end
     return code
     return a
