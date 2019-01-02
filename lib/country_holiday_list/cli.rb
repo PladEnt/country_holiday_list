@@ -18,7 +18,7 @@ class CLI
     puts "|type 'exit' to end the program |"
     puts " "
 
-    self.where_to?
+    where_to?
   end
 
   def country_list
@@ -26,7 +26,7 @@ class CLI
     puts "|------------------|"
     puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
     puts "|------------------|"
-    self.all.each do |country|
+    Country.all.each do |country|
       puts "| #{country.code}"
       puts "| #{country.name}"
       puts "| "
@@ -43,16 +43,35 @@ class CLI
     imput = gets.chomp.strip
 
     if imput == "list"
-      Country.country_list
+      country_list
     elsif imput == "exit"
       puts "Exiting..."
     else
       puts " "
-      Country.country_info(imput)
+      country_info(imput)
     end
   end
-end
 
+  def country_info(country_code)
+    Scraper.get_country_info.each do |country|
+        if country[0] == country_code.upcase || country[0] == country_code
+          puts " "
+          puts "|::::::::::|::::::::::::::::::::::::::::::::::::::::::::::"
+          puts "|Code:     | #{country[0]}"
+          puts "|Country:  | #{country[1]}"
+          puts "|__________|_________________"
+          puts "|Do you want to see a list of|"
+          puts "|holidays for this country?  |"
+          puts "|            Y/N             |"
+          imput = gets.chomp.strip
+          if imput.upcase == "Y"
+            puts Scraper.holiday(country[0])
+          end
+          puts "|Please enter a county code|"
+          puts "|--------------------------|"
 
-CLI.new("josh")
-CLI.welcome
+          where_to?
+        end
+      end
+    end
+  end

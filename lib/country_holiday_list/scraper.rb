@@ -24,17 +24,11 @@ class Scraper
     year = Time.new.year
 
     doc = Nokogiri::HTML(open("https://www.calendarindex.com/holidays/#{year}/#{code}"))
-    holiday_hash = {}
+    holiday_info = []
 
     doc.css("tr").collect do |info|
 
-      holiday_hash << info.split("/a")
-    # holiday_hash ={
-    #   :name => info[0]
-    #   :day => info[1]
-    #   :date => info[2]
-    #   :type => info[3]
-    # }
+      holiday_info << info.text.strip
     end
   end
 end
