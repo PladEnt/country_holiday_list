@@ -11,11 +11,11 @@ class Countrys
   end
 
   def self.country_list
-    info = Scraper.code
+
     puts "|------------------|"
     puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
     puts "|------------------|"
-    info.each do |code, name|
+    @code_of_all.each do |code, name|
       puts "| #{code}"
       puts "| #{name}"
       puts "| "
