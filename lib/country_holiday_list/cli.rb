@@ -1,14 +1,12 @@
-require_relative "./countrys"
 
 class CLI
   attr_accessor :user
 
   def initialize(user)
-    Countrys.new
     @user = user
   end
 
-  def self.welcome
+  def welcome
     puts "|Welcome to Country Holiday List|"
     puts "|-------------------------------|"
     puts "|Please enter the countrys code |"
@@ -23,17 +21,34 @@ class CLI
     self.where_to?
   end
 
-  def self.where_to?
+  def country_list
+
+    puts "|------------------|"
+    puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
+    puts "|------------------|"
+    self.all.each do |country|
+      puts "| #{country.code}"
+      puts "| #{country.name}"
+      puts "| "
+      puts "|-------------"
+    end
+    puts "|Please enter a county code|"
+    puts "|--------------------------|"
+
+    where_to?
+  end
+
+  def where_to?
 
     imput = gets.chomp.strip
 
     if imput == "list"
-      Countrys.country_list
+      Country.country_list
     elsif imput == "exit"
       puts "Exiting..."
     else
       puts " "
-      Countrys.country_info(imput)
+      Country.country_info(imput)
     end
   end
 end

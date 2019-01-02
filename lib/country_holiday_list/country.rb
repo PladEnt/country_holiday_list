@@ -1,30 +1,26 @@
- require_relative "./scraper"
 
-class Countrys
-  attr_accessor :holidays, :doc, :code_of_all
+class Country
+  attr_accessor :code, :name, :holidays
+  @@all = []
 
-  def initialize
-    Scraper.new
-    @doc = Scraper.doc
-    @code_of_all =  Scraper.code
-
+  def initialize(country_info)
+    @code = country_info[0]
+    @name = country_info[1]
+    @holidays = {}
   end
 
-  def self.country_list
-
-    puts "|------------------|"
-    puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
-    puts "|------------------|"
-    @code_of_all.each do |code, name|
-      puts "| #{code}"
-      puts "| #{name}"
-      puts "| "
-      puts "|-------------"
+  def self.all
+    if @@all == []
+      @@all = create_from_collection(Scraper.get_country_info)
+    else
+      @@all
     end
-    puts "|Please enter a county code|"
-    puts "|--------------------------|"
+  end
 
-    CLI.where_to?
+  def self.create_from_collection(collection)
+    collection.collect do |country_info|
+      Country.new(country_info)
+    end
   end
 
   def self.country_info(code)

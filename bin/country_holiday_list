@@ -1,3 +1,8 @@
 #!/usr/bin/env ruby
+require "bundler/setup"
+require_relative "../lib/country_holiday_list"
 
-require_relative "../lib/country_holiday_list_lib/cli"
+puts "what is you name?"
+imput = gets.chomp.strip
+
+CLI.new(imput).welcome

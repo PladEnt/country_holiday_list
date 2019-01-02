@@ -4,23 +4,18 @@ require "pry"
 
 
 class Scraper
-  attr_accessor :doc
-
-  def initialize
-    @doc = Nokogiri::HTML(open("https://www.calendarindex.com/"))
-  end
 
   def self.doc
-    @doc
+    @@doc ||= Nokogiri::HTML(open("https://www.calendarindex.com/"))
   end
 
-  def self.code
-    codes = []
-    @doc.css(".well-countries .col-xs-12").each do |country|
-      country = []
-      country << country.css("code").text.strip
-      country << country.css("a").text.strip
-      countrys_info << country
+  def self.get_country_info
+    countrys_info = []
+    doc.css(".well-countries .col-xs-12").each do |country|
+      country_info = []
+      country_info << country.css("code").text.strip
+      country_info << country.css("a").text.strip
+      countrys_info << country_info
     end
     return countrys_info
   end
