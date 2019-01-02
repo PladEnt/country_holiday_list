@@ -15,12 +15,16 @@ class Scraper
   end
 
   def self.code
+    codes = []
     @doc.css(".well-countries .col-xs-12").each do |country|
       code = country.css("code").text.strip
       a = country.css("a").text.strip
+      country = []
+      country << code
+      country << a
+      codes << country
     end
-    return code
-    return a
+    return codes
   end
 
   def self.holiday(code)

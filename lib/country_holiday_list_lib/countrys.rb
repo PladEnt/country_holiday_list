@@ -6,7 +6,7 @@ class Countrys
   def initialize
     Scraper.new
     @doc = Scraper.doc
-    @code_of_all = Scraper.code
+    @code_of_all =  Scraper.code
 
   end
 
@@ -24,8 +24,7 @@ class Countrys
     puts "|Please enter a county code|"
     puts "|--------------------------|"
 
-
-    puts @list_of_countries
+    CLI.where_to?
   end
 
   def self.country_info(code)
@@ -40,8 +39,8 @@ class Countrys
         error = "no"
         puts " "
         puts "|::::::::::|::::::::::::::::::::::::::::::::::::::::::::::"
-        puts "|Code:     | #{country.css("code").text.strip}"
-        puts "|Country:  | #{country.css("a").text.strip}"
+        puts "|Code:     | #{code}"
+        puts "|Country:  | #{a}"
         puts "|__________|_________________"
         puts "|Do you want to see a list of|"
         puts "|holidays for this country?  |"
@@ -49,7 +48,7 @@ class Countrys
 
         imput = gets.chomp.strip
         if imput.upcase == "Y"
-          holiday_info(country.css("code").text.strip)
+
         end
       end
     end
