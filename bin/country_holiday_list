@@ -2,7 +2,7 @@
 require "bundler/setup"
 require_relative "../lib/country_holiday_list"
 
-puts "what is you name?"
+puts "what is your name?"
 imput = gets.chomp.strip
 
 CLI.new(imput).welcome
