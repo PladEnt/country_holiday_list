@@ -29,6 +29,7 @@ class Scraper
     doc.css("tr").collect do |info|
 
       holiday_info << info.text.strip
+      holiday_info << " "
     end
   end
 end

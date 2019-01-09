@@ -45,7 +45,8 @@ class CLI
     if imput == "list"
       country_list
     elsif imput == "exit"
-      puts "thank you #{name}"
+      puts "thank you #{@user}"
+      puts " "
       puts "Exiting..."
       puts "Done"
     else
@@ -55,8 +56,10 @@ class CLI
   end
 
   def country_info(country_code)
+    error = "yes"
     Scraper.get_country_info.each do |country|
         if country[0] == country_code.upcase || country[0] == country_code
+          error == "no"
           puts " "
           puts "|::::::::::|::::::::::::::::::::::::::::::::::::::::::::::"
           puts "|Code:     | #{country[0]}"
@@ -74,6 +77,16 @@ class CLI
 
           where_to?
         end
+      end
+      if error == "yes"
+        puts " "
+        puts " --------------"
+        puts "| invaled code |"
+        puts "|--------------------------"
+        puts "|Please enter a county code|"
+        puts "|--------------------------|"
+
+        where_to?
       end
     end
   end
