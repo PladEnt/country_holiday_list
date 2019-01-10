@@ -22,7 +22,6 @@ class Scraper
 
   def self.holiday(code)
     year = Time.new.year
-
     doc = Nokogiri::HTML(open("https://www.calendarindex.com/holidays/#{year}/#{code}"))
     holiday_info = []
 
@@ -31,5 +30,6 @@ class Scraper
       holiday_info << info.text.strip
       holiday_info << " "
     end
+
   end
 end

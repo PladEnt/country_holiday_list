@@ -45,10 +45,12 @@ class CLI
     if imput == "list"
       country_list
     elsif imput == "exit"
+      puts " "
       puts "thank you #{@user}"
       puts " "
       puts "Exiting..."
       puts "Done"
+      exit
     else
       puts " "
       country_info(imput)
