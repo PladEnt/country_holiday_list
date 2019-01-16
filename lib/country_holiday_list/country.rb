@@ -6,7 +6,6 @@ class Country
   def initialize(country_info)
     @code = country_info[0]
     @name = country_info[1]
-    @holidays = []
   end
 
   def self.all
@@ -23,5 +22,7 @@ class Country
     end
   end
 
-
+  def holidays
+    @holidays ||= Scraper.holidays(@code)
+  end
 end

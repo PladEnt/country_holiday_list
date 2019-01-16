@@ -21,23 +21,6 @@ class CLI
     where_to?
   end
 
-  def country_list
-
-    puts "|------------------|"
-    puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
-    puts "|------------------|"
-    Country.all.each do |country|
-      puts "| #{country.code}"
-      puts "| #{country.name}"
-      puts "| "
-      puts "|-------------"
-    end
-    puts "|Please enter a county code|"
-    puts "|--------------------------|"
-
-    where_to?
-  end
-
   def where_to?
 
     imput = gets.chomp.strip
@@ -57,38 +40,55 @@ class CLI
     end
   end
 
+  def country_list
+
+    puts "|------------------|"
+    puts "| List of countries|::::::::::::::::::::::::::::::::::::::"
+    puts "|------------------|"
+    Country.all.each do |country|
+      puts "| #{country.code}"
+      puts "| #{country.name}"
+      puts "| "
+      puts "|-------------"
+    end
+    puts "|Please enter a county code|"
+    puts "|--------------------------|"
+
+    where_to?
+  end
+
   def country_info(country_code)
     error = "yes"
-    Scraper.get_country_info.each do |country|
-        if country[0] == country_code.upcase || country[0] == country_code
-          error == "no"
-          puts " "
-          puts "|::::::::::|::::::::::::::::::::::::::::::::::::::::::::::"
-          puts "|Code:     | #{country[0]}"
-          puts "|Country:  | #{country[1]}"
-          puts "|__________|_________________"
-          puts "|Do you want to see a list of|"
-          puts "|holidays for this country?  |"
-          puts "|            Y/N             |"
-          imput = gets.chomp.strip
-          if imput.upcase == "Y"
-            puts Scraper.holiday(country[0])
-          end
-          puts "|Please enter a county code|"
-          puts "|--------------------------|"
-
-          where_to?
-        end
-      end
-      if error == "yes"
+    Country.all.each do |country|
+      if country.code == country_code.upcase || country.name == country_code
+        error == "no"
         puts " "
-        puts " --------------"
-        puts "| invaled code |"
-        puts "|--------------------------"
+        puts "|::::::::::|::::::::::::::::::::::::::::::::::::::::::::::"
+        puts "|Code:     | #{country.code}"
+        puts "|Country:  | #{country.name}"
+        puts "|__________|_________________"
+        puts "|Do you want to see a list of|"
+        puts "|holidays for this country?  |"
+        puts "|            Y/N             |"
+        imput = gets.chomp.strip
+        if imput.upcase == "Y"
+          puts country.holidays
+        end
         puts "|Please enter a county code|"
         puts "|--------------------------|"
 
         where_to?
       end
     end
+    if error == "yes"
+      puts " "
+      puts " --------------"
+      puts "| invaled code |"
+      puts "|--------------------------"
+      puts "|Please enter a county code|"
+      puts "|--------------------------|"
+
+      where_to?
+    end
   end
+end
